@@ -14,3 +14,11 @@ export interface IProduct {
 export interface IProductProps {
   product: IProduct;
 }
+
+type Color = 'red' | 'green' | 'blue' | 'yellow';
+
+export interface IRatingsProps {
+  value: number;
+  text: string;
+  color: string;
+}
