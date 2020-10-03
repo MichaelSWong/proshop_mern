@@ -1,8 +1,9 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import dotenv from 'dotenv';
-import products from './data/products';
 import connectDB from './config/db';
 import colors from 'colors';
+
+import productRoutes from './routes/productRoutes';
 
 dotenv.config();
 
@@ -11,14 +12,7 @@ connectDB();
 const app = express();
 const PORT = process.env.SERVER_PORT || 5000;
 
-app.get('/api/products', (req: Request, res: Response) => {
-  res.json(products);
-});
-
-app.get('/api/products/:id', (req: Request, res: Response) => {
-  const product = products.find((p) => p._id === req.params.id);
-  res.json(product);
-});
+app.use('/api/products', productRoutes);
 
 app.listen(PORT, () => {
   console.log(
