@@ -9,7 +9,9 @@
     "start": "ts-node backend/server",
     "server": "nodemon backend/server",
     "client": "cd frontend && yarn start",
-    "dev": "concurrently \"yarn run server\" \"yarn run client\""
+    "dev": "concurrently \"yarn run server\" \"yarn run client\"",
+    "data:import": "ts-node backend/seeder",
+    "data:destory": "ts-node backend/seeder -d"
   },
   "author": "MICHAELSWONG <mizik_jah@yahoo.com>",
   "license": "MIT",
