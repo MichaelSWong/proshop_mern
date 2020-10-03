@@ -18,7 +18,7 @@ export interface IProductProps {
 type Color = 'red' | 'green' | 'blue' | 'yellow';
 
 export interface IRatingsProps {
-  value: number;
-  text: string;
-  color: string;
+  value?: number;
+  text?: string;
+  color?: string;
 }

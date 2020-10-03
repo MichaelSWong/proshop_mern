@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap';
 import Rating from '../components/Rating';
-import products from '../products';
+import { IProduct } from '../interfaces/interfaces';
 
 const ProductScreen = ({ match }: any) => {
-  const product = products.find((p) => p._id === match.params.id);
+  const [product, setProduct] = useState<Partial<IProduct>>({});
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const { data } = await axios.get(`/api/products/${match.params.id}`);
+
+      setProduct(data);
+    };
+    fetchProduct();
+  }, [match.params.id]);
+
   return (
     <>
       <Link to="/" className="btn btn-light-my-3">
@@ -48,7 +59,9 @@ const ProductScreen = ({ match }: any) => {
                 <Row>
                   <Col>Status:</Col>
                   <Col>
-                    {product!.countInStock > 0 ? 'In Stock' : 'Out of Stock'}
+                    {(product!.countInStock as number) > 0
+                      ? 'In Stock'
+                      : 'Out of Stock'}
                   </Col>
                 </Row>
                 <ListGroup.Item>
