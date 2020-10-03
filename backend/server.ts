@@ -1,8 +1,9 @@
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import dotenv from 'dotenv';
-import connectDB from './config/db';
 import colors from 'colors';
 
+import connectDB from './config/db';
+import { notFound, errorHandler } from './middleware/errorMiddleware';
 import productRoutes from './routes/productRoutes';
 
 dotenv.config();
@@ -13,6 +14,8 @@ const app = express();
 const PORT = process.env.SERVER_PORT || 5000;
 
 app.use('/api/products', productRoutes);
+
+app.use(notFound, errorHandler);
 
 app.listen(PORT, () => {
   console.log(
