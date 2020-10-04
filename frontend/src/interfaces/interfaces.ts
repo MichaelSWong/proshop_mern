@@ -22,3 +22,12 @@ export interface IRatingsProps {
   text?: string;
   color?: string;
 }
+
+export interface IProductDetails extends IProductProps {
+  loading: boolean;
+  error: Error;
+}
+
+export interface IProductDetailProps {
+  productDetails: IProductDetails;
+}
