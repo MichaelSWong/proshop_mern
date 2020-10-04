@@ -4,8 +4,11 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { productListReducer } from './reducers/productReducers';
 
 const reducer = combineReducers({
+  // For useSelector - productList
   productList: productListReducer,
 });
+
+export type RootState = ReturnType<typeof reducer>;
 
 const initialState = {};
 
