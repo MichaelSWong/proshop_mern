@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, FunctionComponent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 
@@ -20,11 +20,11 @@ import Message from '../components/Message';
 
 interface ProductComponentProps extends RouteComponentProps<any> {}
 
-const ProductScreen: React.SFC<ProductComponentProps> = ({
+const ProductScreen: FunctionComponent<ProductComponentProps> = ({
   history,
   match,
 }) => {
-  const [qty, setQty] = useState<any>(0);
+  const [qty, setQty] = useState<any>(1);
 
   const dispatch = useDispatch();
 

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import colors from 'colors';
+
 import users from './data/users';
 import products from './data/products';
 import User from './models/userModel';
@@ -28,10 +28,10 @@ const importData = async () => {
 
     await Product.insertMany(sampleProducts);
 
-    console.log(colors.green.inverse('Data Imported!'));
+    console.log('Data Imported!'.green.inverse);
     process.exit();
   } catch (error) {
-    console.log(colors.red.inverse(`${error}`));
+    console.log(`${error}`.red.inverse);
     process.exit(1);
   }
 };
@@ -42,10 +42,10 @@ const destroyData = async () => {
     await Product.deleteMany({});
     await User.deleteMany({});
 
-    console.log(colors.red.inverse('Data Destroyed!'));
+    console.log('Data Destroyed!'.red.inverse);
     process.exit();
   } catch (error) {
-    console.log(colors.red.inverse(`${error}`));
+    console.log(`${error}`.red.inverse);
     process.exit(1);
   }
 };
