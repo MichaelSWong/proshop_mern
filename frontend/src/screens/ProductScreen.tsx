@@ -37,6 +37,9 @@ const ProductScreen: FunctionComponent<ProductComponentProps> = ({
     dispatch(listProductDetails(match.params.id));
   }, [dispatch, match]);
 
+  console.log('PRODUCT_MATCH', match.path);
+  console.log('PRODUCT_HISTORY', history);
+
   const addToCartHandler = () => {
     history.push(`/cart/${match.params.id}?qty=${qty}`);
   };
