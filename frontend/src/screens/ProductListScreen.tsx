@@ -1,7 +1,7 @@
 import React from 'react';
 
-const ProductListScreen = () => {
+const ProductEditScreen = () => {
   return <div>ProductList</div>;
 };
 
-export default ProductListScreen;
+export default ProductEditScreen;
