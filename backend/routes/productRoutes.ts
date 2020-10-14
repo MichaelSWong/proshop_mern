@@ -1,40 +1,10 @@
-import { Router, Request, Response } from 'express';
-import asyncHandler from 'express-async-handler';
-import Product from '../models/productModel';
+import { Router } from 'express';
+import { get } from 'mongoose';
+import { getProductById, getProducts } from '../controllers/productController';
 
 const router = Router();
 
-/**
- * @desc    Fetch all products
- * @route   GET /api/products
- * @access  Public
- */
-router.get(
-  '/',
-  asyncHandler(async (req: Request, res: Response) => {
-    const products = await Product.find({});
-
-    res.json(products);
-  })
-);
-
-/**
- * @desc    Fetch single product
- * @route   GET /api/products/:id
- * @access  Public
- */
-router.get(
-  '/:id',
-  asyncHandler(async (req: Request, res: Response) => {
-    const product = await Product.findById(req.params.id);
-
-    if (product) {
-      res.json(product);
-    } else {
-      res.status(404);
-      throw new Error('Product not found');
-    }
-  })
-);
+router.route('/').get(getProducts);
+router.route('/:id').get(getProductById);
 
 export default router;
