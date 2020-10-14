@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { Alert } from 'react-bootstrap';
 
 type MessageProps = {
-  variant: string;
+  variant?: string;
 };
 
 const Message: FunctionComponent<MessageProps> = ({ variant, children }) => {

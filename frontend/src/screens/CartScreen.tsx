@@ -11,7 +11,7 @@ import {
   Card,
 } from 'react-bootstrap';
 import Message from '../components/Message';
-import { addToCart } from '../actions/cartAction';
+import { addToCart, removeFromCart } from '../actions/cartAction';
 import { RootState } from '../store';
 import { IItem } from '../interfaces/interfaces';
 
@@ -39,7 +39,7 @@ const CartScreen: FunctionComponent<CartComponentProps> = ({
   }, [dispatch, productId, qty]);
 
   const removeFromCartHandler = (id: string) => {
-    console.log('remove id: ', id);
+    dispatch(removeFromCart(id));
   };
 
   // if not logged in go to '/login' if logged in go to shipping

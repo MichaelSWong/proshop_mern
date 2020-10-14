@@ -31,3 +31,16 @@ export interface IProductDetails extends IProductProps {
 export interface IProductDetailProps {
   productDetails: IProductDetails;
 }
+
+export interface ProductState {
+  products: IProduct[];
+}
+
+export interface IItem {
+  product: string;
+  name: string;
+  image: string;
+  price: number;
+  countInStock: number;
+  qty: number;
+}

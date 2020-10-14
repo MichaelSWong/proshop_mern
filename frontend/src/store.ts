@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware, Reducer } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import {
@@ -7,7 +7,7 @@ import {
 } from './reducers/productReducers';
 import { cartReducer } from './reducers/cartReducers';
 
-const reducer = combineReducers({
+const reducer: Reducer = combineReducers({
   // For useSelector - productList
   productList: productListReducer,
   productDetails: productDetailsReducer,
