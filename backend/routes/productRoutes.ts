@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import { get } from 'mongoose';
 import { getProductById, getProducts } from '../controllers/productController';
 
 const router = Router();

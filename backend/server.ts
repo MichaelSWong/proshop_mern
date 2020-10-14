@@ -6,6 +6,7 @@ import colors from 'colors';
 import connectDB from './config/db';
 import { notFound, errorHandler } from './middleware/errorMiddleware';
 import productRoutes from './routes/productRoutes';
+import userRoutes from './routes/userRoutes';
 
 colors.enable();
 dotenv.config();
@@ -13,10 +14,14 @@ dotenv.config();
 connectDB();
 
 const app = express();
+
+app.use(express.json());
+
 const PORT = process.env.SERVER_PORT || 5000;
 const hostName = OS.hostname();
 
 app.use('/api/products', productRoutes);
+app.use('/api/users', userRoutes);
 
 app.use(notFound, errorHandler);
 
