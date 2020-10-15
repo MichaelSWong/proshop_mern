@@ -48,6 +48,7 @@ export interface IItem {
 export interface ILogin {
   email: string;
   password: string;
+  name: string;
 }
 
 export interface ILoginProps {
