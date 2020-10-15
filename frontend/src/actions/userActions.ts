@@ -2,6 +2,7 @@ import axios from 'axios';
 import {
   USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
+  USER_LOGIN_SUCCESS,
 } from '../constants/userConstants';
 import { ILogin } from '../interfaces/interfaces';
 
@@ -25,7 +26,7 @@ export const login = ({ email, password }: ILogin) => async (
     );
 
     dispatch({
-      type: USER_LOGIN_REQUEST,
+      type: USER_LOGIN_SUCCESS,
       payload: data,
     });
 

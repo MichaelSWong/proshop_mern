@@ -49,3 +49,14 @@ export interface ILogin {
   email: string;
   password: string;
 }
+
+export interface ILoginProps {
+  userInfo: ILogin;
+}
+export interface ILoginUser extends ILoginProps {
+  loading: boolean;
+  error: Error;
+}
+export interface ILoginUserProps {
+  userLogin: ILoginUser;
+}
