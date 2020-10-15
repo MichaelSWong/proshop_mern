@@ -11,7 +11,7 @@ import {
   Card,
 } from 'react-bootstrap';
 import Message from '../components/Message';
-import { addToCart, removeFromCart } from '../actions/cartAction';
+import { addToCart, removeFromCart } from '../actions/cartActions';
 import { RootState } from '../store';
 import { IItem } from '../interfaces/interfaces';
 

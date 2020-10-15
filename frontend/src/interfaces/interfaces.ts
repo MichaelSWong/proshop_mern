@@ -44,3 +44,8 @@ export interface IItem {
   countInStock: number;
   qty: number;
 }
+
+export interface ILogin {
+  email: string;
+  password: string;
+}
