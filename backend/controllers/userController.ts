@@ -3,6 +3,10 @@ import asyncHandler from 'express-async-handler';
 import User from '../models/userModel';
 import generateToken from '../utils/generateToken';
 
+interface IUserRequest extends Request {
+  user?: any;
+}
+
 /**
  * @desc    Auth user & get token
  * @route   POST /api/users/login
@@ -67,21 +71,54 @@ const registerUser = asyncHandler(async (req: Request, res: Response) => {
  * @route   GET /api/users/profile
  * @access  Private
  */
-const getUserProfile = asyncHandler(async (req: Request, res: Response) => {
-  // @ts-ignore
-  const user = await User.findById(req.user._id);
+const getUserProfile = asyncHandler(
+  async (req: IUserRequest, res: Response) => {
+    const user = await User.findById(req.user._id);
 
-  if (user) {
-    res.json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      isAdmin: user.isAdmin,
-    });
-  } else {
-    res.status(404);
-    throw new Error('User not found');
+    if (user) {
+      res.json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        isAdmin: user.isAdmin,
+      });
+    } else {
+      res.status(404);
+      throw new Error('User not found');
+    }
   }
-});
+);
 
-export { authUser, registerUser, getUserProfile };
+/**
+ * @desc    Update user profile
+ * @route   PUT /api/users/profile
+ * @access  Private
+ */
+const updateUserProfile = asyncHandler(
+  async (req: IUserRequest, res: Response) => {
+    const user = await User.findById(req.user._id);
+
+    if (user) {
+      user.name = req.body.name || user.name;
+      user.email = req.body.email || user.email;
+      if (req.body.password) {
+        user.password = req.body.password;
+      }
+
+      const updatedUser = await user.save();
+
+      res.json({
+        _id: updatedUser._id,
+        name: updatedUser.name,
+        email: updatedUser.email,
+        isAdmin: updatedUser.isAdmin,
+        token: generateToken(updatedUser._id),
+      });
+    } else {
+      res.status(404);
+      throw new Error('User not found');
+    }
+  }
+);
+
+export { authUser, registerUser, getUserProfile, updateUserProfile };
