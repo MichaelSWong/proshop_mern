@@ -45,14 +45,14 @@ export interface IItem {
   qty: number;
 }
 
-export interface ILogin {
+export interface IUser {
   email: string;
   password: string;
-  name: string;
+  name?: string;
 }
 
 export interface ILoginProps {
-  userInfo: ILogin;
+  userInfo: IUser;
 }
 export interface ILoginUser extends ILoginProps {
   loading: boolean;
@@ -60,4 +60,17 @@ export interface ILoginUser extends ILoginProps {
 }
 export interface ILoginUserProps {
   userLogin: ILoginUser;
+}
+
+export interface IRegisterProps {
+  userInfo: IUser;
+}
+
+export interface IRegisterUser extends IRegisterProps {
+  loading: boolean;
+  error: Error;
+}
+
+export interface IRegisterUserProps {
+  userRegister: IRegisterUser;
 }

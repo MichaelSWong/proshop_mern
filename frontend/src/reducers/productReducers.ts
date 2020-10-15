@@ -7,23 +7,6 @@ import {
   PRODUCT_DETAILS_FAIL,
 } from '../constants/productConstants';
 
-// type Products = {
-//   rating: number,
-//   numreviews: number,
-//   price: number,
-//   countInStock: number,
-//   _id: string,
-//   name: string,
-//   image: string,
-//   description: string,
-//   brand: string,
-//   category: string,
-//   user: string,
-//   reviews: [],
-//   createdAt: Date,
-//   updatedAt: Date
-// }
-
 export const productListReducer = (state = { products: [] }, action: any) => {
   switch (action.type) {
     case PRODUCT_LIST_REQUEST:
