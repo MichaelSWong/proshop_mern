@@ -5,8 +5,8 @@ export interface IUser extends Document {
   name: string;
   email: string;
   password: string;
-  isAdmin: boolean;
-  timeStamps: boolean;
+  isAdmin?: boolean;
+  timeStamps?: boolean;
   matchPassword: Function;
 }
 
@@ -39,6 +39,16 @@ const userSchema: Schema = new Schema(
 userSchema.methods.matchPassword = async function (enteredPassword: string) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
+
+// Before we save encrypt the password
+userSchema.pre<IUser>('save', async function (next) {
+  if (!this.isModified('password')) {
+    next();
+  }
+
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+});
 
 const User = mongoose.model<IUser>('User', userSchema);
 
