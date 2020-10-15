@@ -74,3 +74,16 @@ export interface IRegisterUser extends IRegisterProps {
 export interface IRegisterUserProps {
   userRegister: IRegisterUser;
 }
+
+export interface IProfileProps {
+  user: IUser;
+}
+
+export interface IUserDetails extends IProfileProps {
+  loading: boolean;
+  error: Error;
+}
+
+export interface IUserDetailsProps {
+  userDetails: IUserDetails;
+}
