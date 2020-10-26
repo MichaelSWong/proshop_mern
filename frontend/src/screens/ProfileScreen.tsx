@@ -9,9 +9,13 @@ import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
-import { getUserDetails } from '../actions/userActions';
+import { getUserDetails, updateUserProfile } from '../actions/userActions';
 
-import { IUserDetailsProps, ILoginUserProps } from '../interfaces/interfaces';
+import {
+  IUserDetailsProps,
+  ILoginUserProps,
+  IUserUpdateProfileProps,
+} from '../interfaces/interfaces';
 
 interface RegisterComponentProps extends RouteComponentProps<any> {}
 
@@ -35,6 +39,11 @@ const ProfileScreen: FunctionComponent<RegisterComponentProps> = ({
   const userLogin = useSelector((state: ILoginUserProps) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const userUpdateProfile = useSelector(
+    (state: IUserUpdateProfileProps) => state.userUpdateProfile
+  );
+  const { success } = userUpdateProfile;
+
   // if there is userinfo than redirect
   useEffect(() => {
     if (!userInfo) {
@@ -54,7 +63,7 @@ const ProfileScreen: FunctionComponent<RegisterComponentProps> = ({
     if (password !== confirmPassword) {
       setMessage('Passwords do not match');
     } else {
-      //TODO DISPATCH UPDATE PROFILE
+      dispatch(updateUserProfile({ id: user._id, name, email, password }));
     }
   };
 
@@ -64,6 +73,7 @@ const ProfileScreen: FunctionComponent<RegisterComponentProps> = ({
         <h2>User Profile</h2>
         {message && <Message variant="danger">{message}</Message>}
         {error && <Message variant="danger">{error}</Message>}
+        {success && <Message variant="success">Profile Updated</Message>}
         {loading && <Loader />}
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="name">

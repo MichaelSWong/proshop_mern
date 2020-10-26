@@ -49,6 +49,8 @@ export interface IUser {
   email: string;
   password: string;
   name?: string;
+  id?: string;
+  _id?: string;
 }
 
 export interface ILoginProps {
@@ -86,4 +88,12 @@ export interface IUserDetails extends IProfileProps {
 
 export interface IUserDetailsProps {
   userDetails: IUserDetails;
+}
+
+export interface IUserUpdateProps {
+  success: boolean;
+}
+
+export interface IUserUpdateProfileProps {
+  userUpdateProfile: IUserUpdateProps;
 }
