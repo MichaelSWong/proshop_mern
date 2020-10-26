@@ -97,3 +97,19 @@ export interface IUserUpdateProps {
 export interface IUserUpdateProfileProps {
   userUpdateProfile: IUserUpdateProps;
 }
+
+export interface IShippingAddress {
+  address: string;
+  city: string;
+  postalCode: string;
+  country: string;
+}
+
+export interface IShippingAddressProps {
+  cartItems: IItem;
+  shippingAddress: IShippingAddress;
+}
+
+export interface ICartProps {
+  cart: IShippingAddressProps;
+}
